@@ -8,7 +8,7 @@ spec:
         repoURL: https://github.com/kieranroseshields/harness-gitops-workshop.git
         revision: main
         files:
-          - path: configs/git-generator-files-discovery/cluster-config/**/config.json
+          - path: configs/git-generator-files-discovery/cluster-config/**/config.yaml
   template:
     metadata:
       name: "{{cluster.namespace}}-podinfo"
