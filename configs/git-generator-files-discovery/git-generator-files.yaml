@@ -1,26 +1,26 @@
-apiVersion: argoproj.io/v1alpha1  
-kind: ApplicationSet  
-metadata:  
-  name: podinfo  
-spec:  
-  generators:  
-    - git:  
-        repoURL: https://github.com/kieranroseshields/harness-gitops-workshop-clean.git
-        revision: main 
-        files:  
-        - path: "configs/git-generator-files-discovery/cluster-config/**/config.yaml"  
-  template:  
-    metadata:  
-      name: '{{cluster.namespace}}-podinfo'  
-    spec:  
-      project: default  
-      source:  
-        repoURL: https://github.com/kieranroseshields/harness-gitops-workshop-clean.git
-        targetRevision: main  
-        path: ""apps/podinfo/deploy/overlays/dev"  
-      destination:  
-        server: '{{cluster.address}}'  
-        namespace: '{{cluster.namespace}}'  
-      syncPolicy:  
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: podinfo
+spec:
+  generators:
+    - git:
+        repoURL: https://github.com/kieranroseshields/harness-gitops-workshop.git
+        revision: main
+        files:
+          - path: configs/git-generator-files-discovery/cluster-config/**/config.json
+  template:
+    metadata:
+      name: "{{cluster.namespace}}-podinfo"
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/kieranroseshields/harness-gitops-workshop.git
+        targetRevision: main
+        path: configs/git-generator-files-discovery/apps/podinfo
+      destination:
+        server: "{{cluster.address}}"
+        namespace: "{{cluster.namespace}}"
+      syncPolicy:
         syncOptions:
-        - CreateNamespace=true
+          - CreateNamespace=true
