@@ -4,14 +4,14 @@ metadata:
   name: podinfo
 spec:
   generators:
-    - git:
-        repoURL: https://github.com/kieranroseshields/harness-gitops-workshop-clean.git
-        revision: main
-        files:
-          - path: configs/git-generator-files-discovery/cluster-config/**/config.json
+  - git:
+      repoURL: https://github.com/kieranroseshields/harness-gitops-workshop-clean.git
+      revision: main
+      files:
+      - path: configs/git-generator-files-discovery/cluster-config/**/config.json
   template:
     metadata:
-      name: "{{cluster.namespace}}-podinfo"
+      name: '{{cluster.namespace}}-podinfo'
     spec:
       project: default
       source:
@@ -19,8 +19,9 @@ spec:
         targetRevision: main
         path: configs/git-generator-files-discovery/apps/podinfo
       destination:
-        server: "{{cluster.address}}"
-        namespace: "{{cluster.namespace}}"
+        server: '{{cluster.address}}'
+        namespace: '{{cluster.namespace}}'
       syncPolicy:
         syncOptions:
-          - CreateNamespace=true
+        - CreateNamespace=true
+release_version: run-50
