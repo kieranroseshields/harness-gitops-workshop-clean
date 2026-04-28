@@ -24,4 +24,4 @@ spec:
       syncPolicy:
         syncOptions:
         - CreateNamespace=true
-release_version: run-51
+release_version: run-52
